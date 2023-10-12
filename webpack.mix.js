@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,26 +11,30 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('public');
+mix.setPublicPath("public");
 
-mix.sass('resources/sass/frontend/app.scss', 'css/frontend.css')
-    .sass('resources/sass/frontend-rtl/app.scss', 'css/frontend-rtl.css')
-    .sass('resources/sass/backend/app.scss', 'css/backend.css')
-    .js('resources/js/frontend/app.js', 'js/frontend.js')
-    .js([
-        'resources/js/backend/before.js',
-        'resources/js/backend/app.js',
-        'resources/js/backend/after.js'
-    ], 'js/backend.js')
-    .extract([
-        'jquery',
-        'jquery-ui-dist/jquery-ui',
-        'bootstrap',
-        'popper.js/dist/umd/popper',
-        'axios',
-        'sweetalert2',
-    ]);
+mix
+  .sass("resources/sass/frontend/app.scss", "css/frontend.css")
+  .sass("resources/sass/frontend/app.scss", "css/frontend.css")
+  .sass("resources/sass/backend/app.scss", "css/backend.css")
+  .js("resources/js/frontend/app.js", "js/frontend.js")
+  .js(
+    [
+      "resources/js/backend/before.js",
+      "resources/js/backend/app.js",
+      "resources/js/backend/after.js",
+    ],
+    "js/backend.js"
+  )
+  .extract([
+    "jquery",
+    "jquery-ui-dist/jquery-ui",
+    "bootstrap",
+    "popper.js/dist/umd/popper",
+    "axios",
+    "sweetalert2",
+  ]);
 
-if (mix.inProduction() || process.env.npm_lifecycle_event !== 'hot') {
-    mix.version();
+if (mix.inProduction() || process.env.npm_lifecycle_event !== "hot") {
+  mix.version();
 }

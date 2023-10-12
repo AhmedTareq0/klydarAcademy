@@ -33,27 +33,16 @@
         <link rel="stylesheet" href="{{ asset('css/frontend.css') }}">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
         <link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.css')}}">
-
         <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
-
         <link rel="stylesheet" href="{{asset('assets/css/colors/switch.css')}}">
-        <link href="{{asset('assets/css/colors/color-2.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-2">
-        <link href="{{asset('assets/css/colors/color-3.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-3">
-        <link href="{{asset('assets/css/colors/color-4.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-4">
-        <link href="{{asset('assets/css/colors/color-5.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-5">
-        <link href="{{asset('assets/css/colors/color-6.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-6">
-        <link href="{{asset('assets/css/colors/color-7.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-7">
-        <link href="{{asset('assets/css/colors/color-8.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-8">
-        <link href="{{asset('assets/css/colors/color-9.css')}}" rel="alternate stylesheet" type="text/css"
-              title="color-9">
-
+        <link href="{{asset('assets/css/colors/color-2.css')}}" rel="alternate stylesheet" type="text/css" title="color-2">
+        <link href="{{asset('assets/css/colors/color-3.css')}}" rel="alternate stylesheet" type="text/css" title="color-3">
+        <link href="{{asset('assets/css/colors/color-4.css')}}" rel="alternate stylesheet" type="text/css" title="color-4">
+        <link href="{{asset('assets/css/colors/color-5.css')}}" rel="alternate stylesheet" type="text/css" title="color-5">
+        <link href="{{asset('assets/css/colors/color-6.css')}}" rel="alternate stylesheet" type="text/css" title="color-6">
+        <link href="{{asset('assets/css/colors/color-7.css')}}" rel="alternate stylesheet" type="text/css" title="color-7">
+        <link href="{{asset('assets/css/colors/color-8.css')}}" rel="alternate stylesheet" type="text/css" title="color-8">
+        <link href="{{asset('assets/css/colors/color-9.css')}}" rel="alternate stylesheet" type="text/css" title="color-9">
         <link href="{{asset('/vendor/unisharp/laravel-ckeditor/plugins/codesnippet/lib/highlight/styles/monokai.css') }}" rel="stylesheet">
         <script src="{{asset('/vendor/unisharp/laravel-ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
         <script>hljs.initHighlightingOnLoad();</script>
@@ -96,103 +85,37 @@
             <div id="main-menu" class="main-menu-container">
                 <div class="main-menu">
                     <div class="container">
-                        <div class="navbar-default">
+                        <div class="navbar-default d-flex justify-content-between align-items-center">
                             <div class="navbar-header float-left">
-                                <a class="navbar-brand text-uppercase" href="{{url('/')}}">
+                                <a class="navbar-brand text-uppercase p-0" href="{{url('/')}}">
                                     {{--<img src="{{asset("storage/logos/".config('logo_w_image'))}}" alt="logo">--}}
                                     <img src="{{asset("storage/logos/".config('logo_w_image'))}}" alt="logo">
                                 </a>
                             </div><!-- /.navbar-header -->
-
-                            <div class="cart-search float-right ul-li">
-                                <ul>
-                                    <li>
-                                        <a href="{{route('cart.index')}}"><i class="fas fa-shopping-bag"></i>
-                                            @if(auth()->check() && Cart::session(auth()->user()->id)->getTotalQuantity() != 0)
-                                                <span class="badge badge-danger position-absolute">{{Cart::session(auth()->user()->id)->getTotalQuantity()}}</span>
-                                            @endif
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-
-
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <nav class="navbar-menu float-right">
-                                <div class="nav-menu ul-li">
+                                <div class="nav-menu ul-li p-0">
                                     <ul>
                                         @if(count($custom_menus) > 0 )
                                             @foreach($custom_menus as $menu)
-                                                {{--@if(is_array($menu['id']) && $menu['id'] == $menu['parent'])--}}
-                                                    {{--@if($menu->subs && (count($menu->subs) > 0))--}}
-{{--                                                @if($menu['id'] == $menu['parent'])--}}
-{{--                                                    @if(count($menu->subs) == 0)--}}
-                                                        <li class="">
-                                                            <a href="{{asset($menu->link)}}"
-                                                               class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}"
-                                                               id="menu-{{$menu->id}}">{{trans('custom-menu.'.$menu_name.'.'.str_slug($menu->label))}}</a>
-                                                        </li>
-
-{{--                                                    @else--}}
-{{--                                                        <li class="menu-item-has-children ul-li-block">--}}
-{{--                                                            <a href="#!">{{trans('custom-menu.'.$menu_name.'.'.str_slug($menu->label))}}</a>--}}
-{{--                                                            <ul class="sub-menu">--}}
-{{--                                                                @foreach($menu->subs as $item)--}}
-{{--                                                                    @include('frontend.layouts.partials.dropdown', $item)--}}
-{{--                                                                @endforeach--}}
-{{--                                                            </ul>--}}
-{{--                                                        </li>--}}
-{{--                                                    @endif--}}
-{{--                                                @endif--}}
+                                                <li class="">
+                                                    <a href="{{asset($menu->link)}}"
+                                                        class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}"
+                                                        id="menu-{{$menu->id}}">{{trans('custom-menu.'.$menu_name.'.'.str_slug($menu->label))}}</a>
+                                                </li>
                                             @endforeach
                                         @endif
-
-                                        @if(auth()->check())
-                                            @if($logged_in_user->hasRole('student'))
-                                            <li>
-                                                <a href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('frontend.auth.logout') }}"><i class="fas fa-sign-out-alt"></i></a>
-                                            </li>
-                                            @else
-                                            <li class="menu-item-has-children ul-li-block">
-                                                <a href="#!">{{ $logged_in_user->name }}</a>
-                                                <ul class="sub-menu">
-                                                    @can('view backend')
-                                                        <li>
-                                                            <a href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
-                                                        </li>
-                                                    @endcan
-
-                                                    <li>
-                                                        <a href="{{ route('frontend.auth.logout') }}">@lang('navs.general.logout')</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            @endif
-                                        @else
-                                            <li>
-                                                <div class="log-in mt-0">
-                                                    <a id="openLoginModal" data-target="#myModal"
-                                                       href="#">@lang('navs.general.login')</a>
-                                                    {{--@include('frontend.layouts.modals.loginModal')--}}
-
-                                                </div>
-                                            </li>
-                                        @endif
-                                            @if(count($locales) > 1)
+                                        
+                                        @if(count($locales) > 1)
                                             <li class="menu-item-has-children ul-li-block">
                                                 <a href="#">
-                                                    <span class="d-md-down-none">@lang('menus.language-picker.language')
-                                                        ({{ strtoupper(app()->getLocale()) }})</span>
+                                                    <span class="d-md-down-none">@lang('menus.language-picker.language')({{ strtoupper(app()->getLocale()) }})</span>
                                                 </a>
                                                 <ul class="sub-menu">
                                                     @foreach($locales as $lang)
                                                         @if($lang != app()->getLocale())
                                                             <li>
-                                                                <a href="{{ '/lang/'.$lang }}"
-                                                                   class=""> @lang('menus.language-picker.langs.'.$lang)</a>
+                                                                <a href="{{ '/lang/'.$lang }}" class=""> @lang('menus.language-picker.langs.'.$lang)</a>
                                                             </li>
                                                         @endif
                                                     @endforeach
@@ -202,6 +125,39 @@
                                     </ul>
                                 </div>
                             </nav>
+
+                            <div class="d-flex align-items-center nav-menu ul-li p-0 justify-content-end">
+                                <ul class="d-flex align-items-center justify-content-end">
+                                    <li>
+                                        <a href="{{route('cart.index')}}"><i class="fas fa-shopping-bag"></i>
+                                            @if(auth()->check() && Cart::session(auth()->user()->id)->getTotalQuantity() != 0)
+                                                <span class="badge badge-danger position-absolute">{{Cart::session(auth()->user()->id)->getTotalQuantity()}}</span>
+                                            @endif
+                                        </a>
+                                    </li>
+                                    @if(auth()->check())
+                                        <li class="menu-item-has-children ul-li-block d-none d-sm-block">
+                                            <a href="#!" class="">{{ $logged_in_user->name }}</a>
+                                            <ul class="sub-menu">
+                                                @can('view backend')
+                                                    <li>
+                                                        <a href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
+                                                    </li>
+                                                @endcan
+
+                                                <li>
+                                                    <a href="{{ route('frontend.auth.logout') }}">@lang('navs.general.logout')</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    @else
+                                        <li class="log-in mt-0">
+                                            <a id="openLoginModal" data-target="#myModal" href="#">@lang('navs.general.login')</a>
+                                        </li>
+                                    @endif
+                                </ul>
+
+                            </div>
 
                             <div class="mobile-menu">
                                 <div class="logo">
@@ -213,26 +169,12 @@
                                     <ul>
                                         @if(count($custom_menus) > 0 )
                                             @foreach($custom_menus as $menu)
-{{--                                                @if($menu['id'] == $menu['parent'])--}}
-{{--                                                    @if(count($menu->subs) > 0)--}}
-                                                        <li class="">
-                                                            <a href="{{asset($menu->link)}}">{{trans('custom-menu.'.$menu_name.'.'.str_slug($menu->label))}}</a>
-{{--                                                            <ul class="">--}}
-{{--                                                                @foreach($menu->subs as $item)--}}
-{{--                                                                    @include('frontend.layouts.partials.dropdown', $item)--}}
-{{--                                                                @endforeach--}}
-{{--                                                            </ul>--}}
-                                                        </li>
-{{--                                                     @else--}}
-{{--                                                        <li class="">--}}
-{{--                                                            <a href="{{asset($menu->link)}}"--}}
-{{--                                                               class="nav-link {{ active_class(Active::checkRoute('frontend.user.dashboard')) }}"--}}
-{{--                                                               id="menu-{{$menu->id}}">{{trans('custom-menu.'.$menu_name.'.'.str_slug($menu->label))}}</a>--}}
-{{--                                                        </li>--}}
-{{--                                                    @endif--}}
-{{--                                                @endif--}}
+                                                <li class="">
+                                                    <a href="{{asset($menu->link)}}">{{trans('custom-menu.'.$menu_name.'.'.str_slug($menu->label))}}</a>
+                                                </li>
                                             @endforeach
                                         @endif
+
                                         @if(auth()->check())
                                             <li class="">
                                                 <a href="#!">{{ $logged_in_user->name}}</a>
@@ -242,7 +184,6 @@
                                                             <a href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
                                                         </li>
                                                     @endcan
-
 
                                                     <li>
                                                         <a href="{{ route('frontend.auth.logout') }}">@lang('navs.general.logout')</a>
@@ -258,24 +199,25 @@
                                                 </div>
                                             </li>
                                         @endif
-                                            @if(count($locales) > 1)
-                                                <li class="menu-item-has-children ul-li-block">
-                                                    <a href="#">
-                                                    <span class="d-md-down-none">@lang('menus.language-picker.language')
-                                                        ({{ strtoupper(app()->getLocale()) }})</span>
-                                                    </a>
-                                                    <ul class="">
-                                                        @foreach($locales as $lang)
-                                                            @if($lang != app()->getLocale())
-                                                                <li>
-                                                                    <a href="{{ '/lang/'.$lang }}"
-                                                                       class=""> @lang('menus.language-picker.langs.'.$lang)</a>
-                                                                </li>
-                                                            @endif
-                                                        @endforeach
-                                                    </ul>
-                                                </li>
-                                            @endif
+
+                                        @if(count($locales) > 1)
+                                            <li class="menu-item-has-children ul-li-block">
+                                                <a href="#">
+                                                <span class="d-md-down-none">@lang('menus.language-picker.language')
+                                                    ({{ strtoupper(app()->getLocale()) }})</span>
+                                                </a>
+                                                <ul class="">
+                                                    @foreach($locales as $lang)
+                                                        @if($lang != app()->getLocale())
+                                                            <li>
+                                                                <a href="{{ '/lang/'.$lang }}"
+                                                                    class=""> @lang('menus.language-picker.langs.'.$lang)</a>
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </nav>
 
@@ -285,6 +227,8 @@
                 </div>
             </div>
         </header>
+
+    
         <!-- Start of Header section
             ============================================= -->
 

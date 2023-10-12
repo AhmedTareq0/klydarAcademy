@@ -2,12 +2,12 @@
 	$path = 'frontend';
         if(session()->has('display_type')){
                  if(session('display_type') == 'rtl'){
-                     $path = 'frontend-rtl';
+                     $path = 'frontend';
                  }else{
                      $path = 'frontend';
                  }
              }else if(config('app.display_type') == 'rtl'){
-                 $path = 'frontend-rtl';
+                 $path = 'frontend';
              }
 @endphp
 @extends($path.'.layouts.app'.config('theme_layout'))

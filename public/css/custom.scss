@@ -164,12 +164,12 @@ ul.product-tab li:after,
     -webkit-text-fill-color: $main-light;
   }
 }
-#main-menu {
-  &.menu-bg-overlay {
-    background: #1e1646;
-    box-shadow: 0 1px 5px 1px #444;
-  }
-}
+// #main-menu {
+//   &.menu-bg-overlay {
+//     background: #1e1646;
+//     box-shadow: 0 1px 5px 1px #444;
+//   }
+// }
 #why-choose-us {
   .subtitle {
     &::after,

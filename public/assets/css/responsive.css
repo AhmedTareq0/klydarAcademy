@@ -253,7 +253,7 @@
 
 		top: 20px;
 
-		margin: 0 auto;
+		margin-inline-start: 50px;
 
 		position: absolute;
 
@@ -1434,7 +1434,7 @@
 
 	.navbar-header {
 
-		width: 140px;
+		width: 80px;
 
 	}
 

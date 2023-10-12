@@ -111,7 +111,7 @@ class AppServiceProvider extends ServiceProvider
 
         }
 
-//        view()->composer(['frontend.layouts.partials.right-sidebar', 'frontend-rtl.layouts.partials.right-sidebar'], function ($view) {
+//        view()->composer(['frontend.layouts.partials.right-sidebar', 'frontend.layouts.partials.right-sidebar'], function ($view) {
 
         if (Schema::hasTable('blogs')) {
 
@@ -124,7 +124,7 @@ class AppServiceProvider extends ServiceProvider
 //        });
 
 
-//        view()->composer(['frontend.*', 'frontend-rtl.*'], function ($view) {
+//        view()->composer(['frontend.*', 'frontend.*'], function ($view) {
 
         if (Schema::hasTable('courses')) {
 
@@ -142,7 +142,7 @@ class AppServiceProvider extends ServiceProvider
             View::share('global_featured_course', $global_featured_course);
             View::share('featured_courses', $featured_courses);
         }
-//        view()->composer(['frontend.*', 'backend.*', 'frontend-rtl.*', 'vendor.invoices.*'], function ($view) {
+//        view()->composer(['frontend.*', 'backend.*', 'frontend.*', 'vendor.invoices.*'], function ($view) {
         if (Schema::hasTable('locales')) {
 
             $locales = [];
