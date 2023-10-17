@@ -39,7 +39,7 @@
                         @endif
                     @endif
 
-                    <div class="section-title mb20 headline text-center ">
+                    <div class="section-title mb20 headline text-center">
                         @if($content->sub_text)
                             <div class="layer-1-1">
                                 <span class="subtitle text-uppercase">{{$content->sub_text}}</span>
@@ -69,19 +69,17 @@
                         </div>
                     @endif
                     @if(isset($content->buttons))
-                        <div class="layer-1-4">
+                        <div class="layer-1-4 mt-3">
                             <div class="about-btn text-center">
                                 @foreach($content->buttons as $button)
-                                    <div class="genius-btn text-center text-uppercase ul-li-block bold-font">
-                                        <a href="{{$button->link}}">{{$button->label}} <i
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <a class="btn-lg btn btn-primary-outline" href="{{$button->link}}">{{$button->label}} <i
                                                     class="fas fa-caret-right"></i></a>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     @endif
-
-
                 </div>
             </div>
         @endforeach

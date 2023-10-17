@@ -30,8 +30,7 @@
 
 @section('content')
 
-    <!-- Start of slider section
-            ============================================= -->
+    <!-- Start of slider section ============================================= -->
     @if(session()->has('alert'))
         <div class="alert alert-light alert-dismissible fade my-alert show">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -39,10 +38,112 @@
         </div>
     @endif
     @include('frontend.layouts.partials.slider')
-
+    <!-- End of slider section ============================================= -->
     @if($sections->search_section->status == 1)
-        <!-- End of slider section
-            ============================================= -->
+        <div class="search-counter-up bg-main">
+            <div class="container">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="col-md-4 col-sm-4 py-3 text-center">
+                        <div class="counter-icon-number d-flex align-items-center justify-content-center">
+                            <div class="counter-icon">
+                                <i class="flaticon-graduation-hat"></i>
+                            </div>
+                            <div class="counter-number d-flex flex-column justify-content-start align-items-start">
+                                <span class="text-white bold-font">{{$total_students}}</span>
+                                <p class="m-0">@lang('labels.frontend.home.students_enrolled')</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /counter -->
+        
+                    <div class="col-md-4 col-sm-4 py-3 text-center">
+                        <div class="counter-icon-number d-flex align-items-center justify-content-center">
+                            <div class="counter-icon">
+                                <i class="flaticon-book"></i>
+                            </div>
+                            <div class="counter-number d-flex flex-column justify-content-start align-items-start">
+                                <span class="text-white bold-font">{{$total_courses}}</span>
+                                <p class="m-0">@lang('labels.frontend.home.online_available_courses')</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /counter -->
+        
+        
+                    <div class="col-md-4 col-sm-4 py-3 text-center">
+                        <div class="counter-icon-number d-flex align-items-center justify-content-center">
+                            <div class="counter-icon">
+                                <i class="flaticon-group"></i>
+                            </div>
+                            <div class="counter-number d-flex flex-column justify-content-start align-items-start">
+                                <span class="text-white bold-font">{{$total_teachers}}</span>
+                                <p class="m-0">@lang('labels.frontend.home.teachers')</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /counter -->
+                </div>
+            </div>
+        </div>
+        {{-- end of Counter Up --}}
+    @endif
+    {{-- start of Categories --}}
+    <div style="background: url({{asset('assets/img/banner/reason.png')}}); background-size:cover;">
+        @if($sections->course_by_category->status == 1)
+            <!-- Start Course category============================================= -->
+            @include('frontend.layouts.partials.course_by_category')
+            <!-- End Course category============================================= -->
+        @endif
+        {{-- End of Categories --}}
+        @if(($sections->reasons->status != 0))
+            <!-- Start of why choose us section  ============================================= -->
+            <section id="why-choose-us" class="why-choose-us-section">
+                <div class="container">
+                    @if($sections->reasons->status == 1)
+                        <div class="section-title mb20 headline text-center ">
+                            <span class="subtitle text-uppercase">{{env('APP_NAME')}} @lang('labels.frontend.layouts.partials.advantages')</span>
+                            <h2>@lang('labels.frontend.layouts.partials.why_choose')</span></h2>
+                        </div>
+                        @if($reasons->count() > 0)
+                            <div id="" class="row">
+                                @php
+                                    $transparent = ['249, 37, 150','88, 102, 235','0,168,255','142, 86, 255'];
+                                    $colors = ['#FFF0F8','#F7F3FF','#F1FBFF','#F3F4FE'];
+                                @endphp
+                                @foreach($reasons->take(4) as $index => $item)
+                                    <div class="col-md-3">
+                                        <div class="section border-main py-4 px-3"
+                                        style="background:{{$colors[$index]}}; border-color:transparent"
+                                        onmouseover="this.style.backgroundColor = 'rgba({{ $transparent[$index] }}, 1)'" 
+                                        onmouseout="this.style.backgroundColor = '{{ $colors[$index] }}'" >
+                                            <div class="d-flex justify-content-center mb-3">
+                                                <span class="icon d-flex rounded-circle d-flex justify-content-center align-items-center" 
+                                                    style="
+                                                    height: 60px; 
+                                                    width:60px;
+                                                    color:rgba({{ $transparent[$index] }}, 1);
+                                                    background:rgba({{ $transparent[$index] }}, 0.2)">
+                                                    <i class="{{$item->icon}}" style="font-size:25px"></i>
+                                                </span>
+                                            </div>
+                                            <div class="text-center">
+                                                <h5 style="color:rgba({{ $transparent[$index] }}, 1)">{{$item->title}}</h5>
+                                                <p>{{$item->content}}.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    @endif
+                <!-- /service-slide -->
+                </div>
+            </section>
+            <!-- End of why choose us section  ============================================= -->
+        @endif
+    </div>
+        
+    @if($sections->search_section->status == 1)
         <section id="search-course" class="search-course-section">
             <div class="container">
                 <div class="section-title mb20 headline text-center ">
@@ -51,143 +152,109 @@
                 </div>
                 <div class="search-course mb30 relative-position ">
                     <form action="{{route('search')}}" method="get">
-
-                        <div class="input-group search-group">
-                            <input class="course" name="q" type="text"
-                                   placeholder="@lang('labels.frontend.home.search_course_placeholder')">
+                        <div class="input-group search-group border-main">
+                            <input class="course" name="q" type="text" placeholder="@lang('labels.frontend.home.search_course_placeholder')">
                             <select name="category" class="select form-control">
                                 @if(count($categories) > 0 )
                                     <option value="">@lang('labels.frontend.course.select_category')</option>
                                     @foreach($categories as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
-
                                     @endforeach
                                 @else
                                     <option>>@lang('labels.frontend.home.no_data_available')</option>
                                 @endif
-
                             </select>
-                            <div class="nws-button position-relative text-center  gradient-bg text-capitalize">
-                                <button type="submit"
-                                        value="Submit">@lang('labels.frontend.home.search_course')</button>
-                            </div>
+                            <button class="btn btn-primary btn-lg px-5" type="submit" value="Submit">
+                                @lang('labels.frontend.home.search_course')
+                            </button>
                         </div>
                     </form>
                 </div>
-                <div class="search-counter-up">
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4">
-                            <div class="counter-icon-number ">
-                                <div class="counter-icon">
-                                    <i class="text-gradiant flaticon-graduation-hat"></i>
-                                </div>
-                                <div class="counter-number">
-                                    <span class=" bold-font">{{$total_students}}</span>
-                                    <p>@lang('labels.frontend.home.students_enrolled')</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /counter -->
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="counter-icon-number ">
-                                <div class="counter-icon">
-                                    <i class="text-gradiant flaticon-book"></i>
-                                </div>
-                                <div class="counter-number">
-                                    <span class=" bold-font">{{$total_courses}}</span>
-                                    <p>@lang('labels.frontend.home.online_available_courses')</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /counter -->
-
-
-                        <div class="col-md-4 col-sm-4">
-                            <div class="counter-icon-number ">
-                                <div class="counter-icon">
-                                    <i class="text-gradiant flaticon-group"></i>
-                                </div>
-                                <div class="counter-number">
-                                    <span class=" bold-font">{{$total_teachers}}</span>
-                                    <p>@lang('labels.frontend.home.teachers')</p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /counter -->
-                    </div>
-                </div>
+                
             </div>
         </section>
         <!-- End of Search Courses
             ============================================= -->
     @endif
 
-
     @if($sections->popular_courses->status == 1)
         @include('frontend.layouts.partials.popular_courses')
     @endif
+    </div>
 
-    @if(($sections->reasons->status != 0) || ($sections->testimonial->status != 0))
-        <!-- Start of why choose us section
-        ============================================= -->
-        <section id="why-choose-us" class="why-choose-us-section">
-            <div class="jarallax  backgroud-style">
+    <div style="background: url({{asset('assets/img/banner/testimonials.png')}})">
+        @if($sections->testimonial->status == 1)
+            <div class="testimonials-section">
                 <div class="container">
-                    @if($sections->reasons->status == 1)
-
-                        <div class="section-title mb20 headline text-center ">
-                            <span class="subtitle text-uppercase">{{env('APP_NAME')}} @lang('labels.frontend.layouts.partials.advantages')</span>
-                            <h2>@lang('labels.frontend.layouts.partials.why_choose') <span>{{app_name()}}</span></h2>
-                        </div>
-                        @if($reasons->count() > 0)
-                            <div id="service-slide-item" class="service-slide">
-                                @foreach($reasons as $item)
-                                    <div class="service-text-icon ">
-
-                                        <div class="service-icon float-left">
-                                            <i class="text-gradiant {{$item->icon}}"></i>
-                                        </div>
-                                        <div class="service-text">
-                                            <h3 class="bold-font">{{$item->title}}</h3>
-                                            <p>{{$item->content}}.</p>
-                                        </div>
-                                    </div>
-
-                                @endforeach
-
-                            </div>
-                        @endif
-                    @endif
-                <!-- /service-slide -->
-                    @if($sections->testimonial->status == 1)
-                        <div class="testimonial-slide">
+                    <div class="row">
+                        <div class="col-md-5">
                             <div class="section-title-2 mb65 headline text-left ">
                                 <h2>@lang('labels.frontend.layouts.partials.students_testimonial')</h2>
                             </div>
-                            @if($testimonials->count() > 0)
-                                <div id="testimonial-slide-item" class="testimonial-slide-area">
-                                    @foreach($testimonials as $item)
-                                        <div class="student-qoute ">
-                                            <p>{{$item->content}}</p>
-                                            <div class="student-name-designation">
-                                                <span class="st-name bold-font">{{$item->name}} </span>
-                                                <span class="st-designation">{{$item->occupation}}</span>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @else
-                                <h4>@lang('labels.general.no_data_available')</h4>
-                            @endif
+                            <p>voices of our students are a testament to the quality of education and experiences we provide. Here's what some of our students have to say about their time with us</p>
                         </div>
-                    @endif
+                        <div class="col-md-7">
+                            <div class="testimonial-slide">
+                                @if($testimonials->count() > 0)
+                                    <div id="testimonial-slide-item" class="testimonial-slide-area">
+                                        @foreach($testimonials as $item)
+                                            <div class="p-3">
+                                                <div class="border-main border-0 p-3 testimonial-item">
+                                                    <div style="margin: -12px -10px; text-align:end">
+                                                        <i class="fa fa-quote-right text-main"></i>
+                                                    </div>
+                                                    <p class="m-0">
+                                                        {{\Illuminate\Support\Str::limit($item->content , 65) }}
+                                                    </p>
+                                                    <div class="rate my-3">
+                                                        <i class="fa fa-star" style="color: goldenrod"></i>
+                                                        <i class="fa fa-star mx-1" style="color: goldenrod"></i>
+                                                        <i class="fa fa-star mx-1" style="color: goldenrod"></i>
+                                                        <i class="fa fa-star mx-1" style="color: goldenrod"></i>
+                                                        <i class="fa fa-star" style="color: goldenrod"></i>
+                                                    </div>
+                                                    <div class="mb-2">
+                                                        <h4 class="name mb-0 text-black">{{$item->name}} </h4>
+                                                        <p class="position mb-0">{{$item->occupation}}</p>
+                                                    </div>
+                                                    <div style="margin: -12px -10px; text-align:start">
+                                                        <i class="fa fa-quote-left text-second"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <h4>@lang('labels.general.no_data_available')</h4>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-        <!-- End of why choose us section
-            ============================================= -->
-    @endif
+        @endif
+
+        @if($sections->sponsors->status == 1)
+            @if(count($sponsors) > 0 )
+                <!-- Start of sponsor section============================================= -->
+                <section id="sponsor" class="sponsor-section">
+                    <div class="container">
+                        <div class="sponsor-item sponsor-1 text-center">
+                            @foreach($sponsors as $sponsor)
+                                <div class="sponsor-pic text-center">
+                                    <a href="{{ ($sponsor->link != "") ? $sponsor->link : '#' }}">
+                                        <img src={{asset("storage/uploads/".$sponsor->logo)}} alt="{{$sponsor->name}}">
+                                    </a>
+                                </div>
+                            @endforeach
+
+                        </div>
+                    </div>
+                </section>
+                <!-- End of sponsor section============================================= -->
+            @endif
+        @endif
+    </div>
 
     @if($sections->latest_news->status == 1)
         <!-- Start latest section
@@ -196,36 +263,6 @@
         <!-- End latest section
             ============================================= -->
     @endif
-
-
-    @if($sections->sponsors->status == 1)
-        @if(count($sponsors) > 0 )
-            <!-- Start of sponsor section
-        ============================================= -->
-            <section id="sponsor" class="sponsor-section">
-                <div class="container">
-                    <div class="section-title-2 mb65 headline text-left ">
-                        <h2>{{env('APP_NAME')}} <span>@lang('labels.frontend.layouts.partials.sponsors')</span></h2>
-                    </div>
-
-                    <div class="sponsor-item sponsor-1 text-center">
-                        @foreach($sponsors as $sponsor)
-                            <div class="sponsor-pic text-center">
-                                <a href="{{ ($sponsor->link != "") ? $sponsor->link : '#' }}">
-                                    <img src={{asset("storage/uploads/".$sponsor->logo)}} alt="{{$sponsor->name}}">
-                                </a>
-
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-            </section>
-            <!-- End of sponsor section
-       ============================================= -->
-        @endif
-    @endif
-
 
     @if($sections->featured_courses->status == 1)
         <!-- Start of best course
@@ -237,64 +274,37 @@
 
 
     @if($sections->teachers->status == 1)
-        <!-- Start of course teacher
-        ============================================= -->
+        <!-- Start of course teacher ============================================= -->
+        @if(count($teachers)> 0)
+
         <section id="course-teacher" class="course-teacher-section">
-            <div class="jarallax">
-                <div class="container">
-                    <div class="section-title mb20 headline text-center ">
-                        <span class="subtitle text-uppercase">@lang('labels.frontend.home.our_professionals')</span>
-                        <h2>{{env('APP_NAME')}} <span>@lang('labels.frontend.home.teachers').</span></h2>
-                    </div>
+            <div class="container">
+                <div class="section-title mb20 headline text-center ">
+                    <span class="subtitle text-uppercase">@lang('labels.frontend.home.our_professionals')</span>
+                    <h2>{{env('APP_NAME')}} <span>@lang('labels.frontend.home.teachers').</span></h2>
+                </div>
 
-                    <div class="teacher-list">
-                        <div class="row justify-content-center">
-                            <!-- /teacher -->
-                            @if(count($teachers)> 0)
-                                @foreach($teachers as $item)
-                                    <div class="col-md-3">
-                                        <div class="teacher-img-content ">
-                                            <div class="teacher-cntent">
-                                                <div class="teacher-social-name ul-li-block">
-                                                    <ul>
-                                                        <li><a href="{{'mailto:'.$item->email}}"><i
-                                                                        class="fa fa-envelope"></i></a></li>
-                                                        <li>
-                                                            <a href="{{route('admin.messages',['teacher_id'=>$item->id])}}"><i
-                                                                        class="fa fa-comments"></i></a></li>
-                                                    </ul>
-                                                    <div class="teacher-name">
-                                                        <span>{{$item->full_name}}</span>
-                                                    </div>
-                                                </div>
-                                                <div class="teacher-img-category">
-                                                    <div class="teacher-img">
-                                                        <img src="{{$item->picture}}" style="height: 100%" alt="">
-                                                        {{--<div class="course-price text-uppercase text-center gradient-bg">--}}
-                                                        {{--<span>Featured</span>--}}
-                                                        {{--</div>--}}
-                                                    </div>
-                                                    {{--<div class="teacher-category float-right">--}}
-                                                    {{--<span class="st-name">{{$item->name}} </span>--}}
-                                                    {{--</div>--}}
-                                                </div>
-                                            </div>
-                                        </div>
+                <div class="teachers">
+                    <div class="row justify-content-center">
+                        @foreach($teachers->take(4) as $item)
+                            <div class="col-md-3">
+                                <div class="teacher bg-white border-main border-0">
+                                    <div class="image mx-4 p-2">
+                                        <img src="{{$item->picture}}" alt="" class="w-100 rounded border-0" style="margin-top: -100px">
                                     </div>
-                                @endforeach
-                            @endif
-                        </div>
-
-                        <div class="genius-btn gradient-bg text-center text-uppercase ul-li-block bold-font ">
-                            <a href="{{route('teachers.index')}}">@lang('labels.frontend.home.all_teachers')<i
-                                        class="fas fa-caret-right"></i></a>
-                        </div>
+                                    <div class="info p-3 pt-0 text-center">
+                                        <p class="m-0 name">{{$item->full_name}}</p>
+                                        <p class="m-0">{{$item->email}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End of course teacher
-            ============================================= -->
+        <!-- End of course teacher ============================================= -->
+        @endif
     @endif
 
 
@@ -305,16 +315,6 @@
         <!-- End FAQ section
             ============================================= -->
     @endif
-
-
-    @if($sections->course_by_category->status == 1)
-        <!-- Start Course category
-        ============================================= -->
-        @include('frontend.layouts.partials.course_by_category')
-        <!-- End Course category
-            ============================================= -->
-    @endif
-
 
     @if($sections->contact_us->status == 1)
         <!-- Start of contact area

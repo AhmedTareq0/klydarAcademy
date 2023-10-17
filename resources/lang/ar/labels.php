@@ -1132,6 +1132,8 @@ return array (
     'badges' => 
     array (
       'trending' => 'الشائع',
+      'popular' => 'المفضل',
+      'featured' => 'المميز',
     ),
     'blog' => 
     array (
@@ -1354,7 +1356,7 @@ return array (
         'view_all_news' => 'عرض جميع الأخبار',
         'view_all_popular_courses' => 'عرض جميع الدورات الشعبية',
         'view_all_trending_courses' => 'عرض جميع الدورات التدريبية',
-        'why_choose' => 'السبب في اختيار',
+        'why_choose' => 'اسباب اختيارنا',
         'certificate_verification' => 'التحقق من الشهادة',
         'more_faqs' => 'المزيد من الأسئلة الشائعة',
         'offers' => 'عروض',

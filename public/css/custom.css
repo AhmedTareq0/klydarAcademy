@@ -131,17 +131,6 @@ ul.product-tab li:after,
   border: 2px solid #2f14be !important;
 }
 
-.text-primary,
-.counter-icon-number,
-.slider-area {
-  color: #2f14be !important;
-}
-.text-primary i,
-.counter-icon-number i,
-.slider-area i {
-  color: #2f14be !important;
-}
-
 .text-gradiant {
   -webkit-text-fill-color: #2f14be;
 }

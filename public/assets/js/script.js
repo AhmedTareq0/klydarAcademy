@@ -267,12 +267,12 @@ Author:         HTMLMATE Team
             ================================================*/
             testimonialSlide: function () {
                 $('#testimonial-slide-item').owlCarousel({
-                    margin: 85,
+                    margin: 0,
                     responsiveClass: true,
-                    nav: true,
-                    autoplay: false,
+                    nav: false,
+                    autoplay: true,
                     navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
-                    dots: false,
+                    dots: true,
                     smartSpeed: 1000,
                     responsive: {
                         0: {
@@ -318,10 +318,11 @@ Author:         HTMLMATE Team
             ================================================*/
             sponsorSlide: function () {
                 $('.sponsor-item').owlCarousel({
-                    margin: 2,
+                    margin:10,
                     responsiveClass: true,
-                    nav: true,
-                    autoplay: false,
+                    nav: false,
+                    loop:true,
+                    autoplay: true,
                     navText: ["<i class='fas fa-chevron-left'></i>", "<i class='fas fa-chevron-right'></i>"],
                     dots: true,
                     smartSpeed: 1000,

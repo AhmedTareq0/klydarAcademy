@@ -84,8 +84,8 @@
         <header>
             <div id="main-menu" class="main-menu-container">
                 <div class="main-menu">
-                    <div class="container">
-                        <div class="navbar-default d-flex justify-content-between align-items-center">
+                    <div class="container  d-flex justify-content-between align-items-center">
+                        <div class="navbar-default d-flex align-items-center">
                             <div class="navbar-header float-left">
                                 <a class="navbar-brand text-uppercase p-0" href="{{url('/')}}">
                                     {{--<img src="{{asset("storage/logos/".config('logo_w_image'))}}" alt="logo">--}}
@@ -93,7 +93,7 @@
                                 </a>
                             </div><!-- /.navbar-header -->
                             <!-- Collect the nav links, forms, and other content for toggling -->
-                            <nav class="navbar-menu float-right">
+                            <nav class="navbar-menu">
                                 <div class="nav-menu ul-li p-0">
                                     <ul>
                                         @if(count($custom_menus) > 0 )
@@ -106,9 +106,17 @@
                                             @endforeach
                                         @endif
                                         
-                                        @if(count($locales) > 1)
-                                            <li class="menu-item-has-children ul-li-block">
-                                                <a href="#">
+                                        @if(count($locales) == 2)
+                                            @foreach($locales as $lang)
+                                                @if($lang != app()->getLocale())
+                                                    <li>
+                                                        <a href="{{ '/lang/'.$lang }}" class="nav-link"> @lang('menus.language-picker.langs.'.$lang)</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        @elseif(count($locales) > 2)
+                                            <li class="menu-item-has-children">
+                                                <a href="#" class="nav-link">
                                                     <span class="d-md-down-none">@lang('menus.language-picker.language')({{ strtoupper(app()->getLocale()) }})</span>
                                                 </a>
                                                 <ul class="sub-menu">
@@ -125,39 +133,6 @@
                                     </ul>
                                 </div>
                             </nav>
-
-                            <div class="d-flex align-items-center nav-menu ul-li p-0 justify-content-end">
-                                <ul class="d-flex align-items-center justify-content-end">
-                                    <li>
-                                        <a href="{{route('cart.index')}}"><i class="fas fa-shopping-bag"></i>
-                                            @if(auth()->check() && Cart::session(auth()->user()->id)->getTotalQuantity() != 0)
-                                                <span class="badge badge-danger position-absolute">{{Cart::session(auth()->user()->id)->getTotalQuantity()}}</span>
-                                            @endif
-                                        </a>
-                                    </li>
-                                    @if(auth()->check())
-                                        <li class="menu-item-has-children ul-li-block d-none d-sm-block">
-                                            <a href="#!" class="">{{ $logged_in_user->name }}</a>
-                                            <ul class="sub-menu">
-                                                @can('view backend')
-                                                    <li>
-                                                        <a href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
-                                                    </li>
-                                                @endcan
-
-                                                <li>
-                                                    <a href="{{ route('frontend.auth.logout') }}">@lang('navs.general.logout')</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @else
-                                        <li class="log-in mt-0">
-                                            <a id="openLoginModal" data-target="#myModal" href="#">@lang('navs.general.login')</a>
-                                        </li>
-                                    @endif
-                                </ul>
-
-                            </div>
 
                             <div class="mobile-menu">
                                 <div class="logo">
@@ -222,6 +197,38 @@
                                 </nav>
 
                             </div>
+                        </div>
+                        <div class="d-flex align-items-center nav-menu ul-li p-0 justify-content-end">
+                            <ul class="d-flex align-items-center justify-content-end">
+                                <li class="mx-1">
+                                    <a class="nav-link" href="{{route('cart.index')}}"><i class="fas fa-shopping-bag"></i>
+                                        @if(auth()->check() && Cart::session(auth()->user()->id)->getTotalQuantity() != 0)
+                                            <span class="badge badge-danger position-absolute">{{Cart::session(auth()->user()->id)->getTotalQuantity()}}</span>
+                                        @endif
+                                    </a>
+                                </li>
+                                @if(auth()->check())
+                                    <li class="menu-item-has-children ul-li-block d-none d-sm-block">
+                                        <a href="#!" class="nav-link">{{ $logged_in_user->name }}</a>
+                                        <ul class="sub-menu">
+                                            @can('view backend')
+                                                <li>
+                                                    <a href="{{ route('admin.dashboard') }}">@lang('navs.frontend.dashboard')</a>
+                                                </li>
+                                            @endcan
+
+                                            <li>
+                                                <a class="" href="{{ route('frontend.auth.logout') }}">@lang('navs.general.logout') </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @else
+                                    <li class="">
+                                        <a class="btn btn-primary" id="openLoginModal" data-target="#myModal" href="#">@lang('navs.general.login')</a>
+                                    </li>
+                                @endif
+                            </ul>
+
                         </div>
                     </div>
                 </div>

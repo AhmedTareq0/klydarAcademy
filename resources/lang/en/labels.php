@@ -1449,6 +1449,8 @@ return array (
     'badges' => 
     array (
       'trending' => 'Trending',
+      'popular' => 'Popular',
+      'featured' => 'Featured',
     ),
     'course' => 
     array (
@@ -1590,7 +1592,7 @@ return array (
         'search_courses' => 'Search Courses',
         'sponsors' => 'Sponsors.',
         'students_testimonial' => 'Students <span>Testimonial.</span>',
-        'why_choose' => 'Reason Why Choose',
+        'why_choose' => 'Reason Why Choose us',
         'certificate_verification' => 'Certificate Verification',
         'offers' => 'Offers',
       ),
