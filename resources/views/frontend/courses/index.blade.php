@@ -96,8 +96,97 @@
                                         @if($courses->count() > 0)
 
                                             @foreach($courses as $course)
-
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 col-sm-6 course-item">
+                                                    <div  href="{{ route('courses.show', [$course->slug]) }}" class="d-block course-details border-main mt-3 border-0 position-relative">
+                                                        <div class="course-overlay p-3 bg-main position-absolute d-flex flex-column align-items-start justify-content-between">
+                                                            <div class="content">
+                                                                <small class="fav d-inline-block bg-second border-main border-0 fs-4 position-absolute ">
+                                                                    @include('frontend.layouts.partials.wishlist',['course' => $course->id, 'price' => $course->price])
+                                                                </small>
+                                                                <div class="badges">
+                                                                    @if($course->trending == 1)
+                                                                        <span class="badge badge-light text-main">
+                                                                            <i class="fas fa-bolt"></i> 
+                                                                            @lang('labels.frontend.badges.trending')
+                                                                        </span>
+                                                                    @endif
+                                                                    @if($course->popular == 1)
+                                                                        <span class="badge badge-light text-main">
+                                                                            <i class="fas fa-bolt"></i> 
+                                                                            @lang('labels.frontend.badges.popular')
+                                                                        </span>
+                                                                    @endif
+                                                                    @if($course->featured == 1)
+                                                                        <span class="badge badge-light text-main">
+                                                                            <i class="fas fa-bolt"></i> 
+                                                                            @lang('labels.frontend.badges.featured')
+                                                                        </span>
+                                                                    @endif
+                                                                </div>
+                                                                <div class="course-title my-2">
+                                                                    <h5 class="fw-bold text-white title">{{$course->title}}</h5>
+                                                                </div>
+                                
+                                                                <div class="course-desc my-2">
+                                                                    <p class="fw-bold m-0">{!!$course->description!!}</p>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <a href="{{ route('courses.show', [$course->slug]) }}" class="btn btn-secondary">
+                                                                    enroll Course 
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="image overflow-hidden" style="height: 200px; overflow:hidden">
+                                                            <img class="w-100" src="{{asset('storage/uploads/'.$course->course_image)}}" alt="" style="object-fit:cover;height: 200px;">
+                                                        </div>
+                                                        <div class="info p-3">
+                                                            <div class="badges">
+                                                                @if($course->trending == 1)
+                                                                    <span class="badge badge-success">
+                                                                        <i class="fas fa-bolt"></i> 
+                                                                        @lang('labels.frontend.badges.trending')
+                                                                    </span>
+                                                                @endif
+                                                                @if($course->popular == 1)
+                                                                    <span class="badge badge-info">
+                                                                        <i class="fas fa-bolt"></i> 
+                                                                        @lang('labels.frontend.badges.popular')
+                                                                    </span>
+                                                                @endif
+                                                                @if($course->featured == 1)
+                                                                    <span class="badge badge-primary">
+                                                                        <i class="fas fa-bolt"></i> 
+                                                                        @lang('labels.frontend.badges.featured')
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="course-title my-2">
+                                                                <h5 class="fw-bold text-black">{{ \Illuminate\Support\Str::limit($course->title , 30) }}</h5>
+                                                            </div>
+                            
+                                                            <div class="price mb-3">
+                                                                <h6 class="m-0 text-main">
+                                                                    {!!  $course->strikePrice  !!}
+                                                                    {{$appCurrency['symbol'].' '.$course->price}}
+                                                                </h6>
+                                                            </div>
+                                                            <div class="icons d-flex align-items-center justify-content-start">
+                                                                <small class="d-inline-block mx-1 alert alert-warning p-1">
+                                                                    {{$course->rating == null ?'0':$course->rating }}
+                                                                    <i class="fas fa-star mx-1" style="color: goldenrod"></i>
+                                                                </small>
+                                                                <small class="d-inline-block mx-1 alert alert-success p-1">
+                                                                    <i class="fas fa-user"></i> {{ $course->students()->count() }}
+                                                                </small>
+                                                                <small class="d-inline-block mx-1 alert alert-info p-1">
+                                                                    <i class="fas fa-comment-dots"></i> {{count($course->reviews) }}
+                                                                </small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-md-4">
                                                     <div class="best-course-pic-text relative-position">
                                                         <div class="best-course-pic relative-position"
                                                              @if($course->course_image != "") style="background-image: url('{{asset('storage/uploads/'.$course->course_image)}}')" @endif>
@@ -154,7 +243,7 @@
                                                             @include('frontend.layouts.partials.wishlist',['course' => $course->id, 'price' => $course->price])
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                             @endforeach
                                         @else
@@ -266,7 +355,7 @@
                                         <label>@lang('labels.frontend.course.full_text')</label>
                                         <input type="text" class="" name="q" placeholder="{{trans('labels.frontend.course.looking_for')}}">
                                     </div>
-                                    <button class="genius-btn gradient-bg text-center text-uppercase btn-block text-white font-weight-bold"
+                                    <button class="btn btn-primary w-100"
                                             type="submit">@lang('labels.frontend.course.find_courses') <i
                                                 class="fas fa-caret-right"></i></button>
                                 </form>
@@ -278,20 +367,20 @@
                             <div class="side-bar-widget">
                                 <h2 class="widget-title text-capitalize">@lang('labels.frontend.course.recent_news')</h2>
                                 <div class="latest-news-posts">
-                                    @foreach($recent_news as $item)
+                                    @foreach($recent_news as $course)
                                         <div class="latest-news-area">
 
-                                            @if($item->image != "")
+                                            @if($course->image != "")
                                                 <div class="latest-news-thumbnile relative-position"
-                                                     style="background-image: url({{asset('storage/uploads/'.$item->image)}})">
+                                                     style="background-image: url({{asset('storage/uploads/'.$course->image)}})">
                                                     <div class="blakish-overlay"></div>
                                                 </div>
                                             @endif
                                             <div class="date-meta">
-                                                <i class="fas fa-calendar-alt"></i> {{$item->created_at->format('d M Y')}}
+                                                <i class="fas fa-calendar-alt"></i> {{$course->created_at->format('d M Y')}}
                                             </div>
                                             <h3 class="latest-title bold-font"><a
-                                                        href="{{route('blogs.index',['slug'=>$item->slug.'-'.$item->id])}}">{{$item->title}}</a>
+                                                        href="{{route('blogs.index',['slug'=>$course->slug.'-'.$course->id])}}">{{$course->title}}</a>
                                             </h3>
                                         </div>
                                         <!-- /post -->
@@ -308,7 +397,7 @@
                         @endif
 
 
-                        @if($global_featured_course != "")
+                        {{-- @if($global_featured_course != "")
                             <div class="side-bar-widget">
                                 <h2 class="widget-title text-capitalize">@lang('labels.frontend.course.featured_course')</h2>
                                 <div class="featured-course">
@@ -345,7 +434,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endif --}}
                     </div>
                 </div>
             </div>

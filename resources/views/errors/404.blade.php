@@ -128,7 +128,6 @@
         <div class="container">
             <div class="page-breadcrumb-content text-center">
                 <div class="page-breadcrumb-title"><h2 class="breadcrumb-head black bold"><span>@lang('http.404.title2')</span></h2></div>
-
             </div>
         </div>
     </section>    <!-- End of breadcrumb section

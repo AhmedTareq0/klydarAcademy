@@ -94,7 +94,97 @@
                                         @if(count($bundles) > 0)
                                             @foreach($bundles as $bundle)
 
-                                                <div class="col-md-4">
+                                            <div class="col-md-4 col-sm-6 course-item mb-3">
+                                                <div  href="{{ route('courses.show', [$bundle->slug]) }}" class="d-block course-details border-main mt-3 border-0 position-relative">
+                                                    <div class="course-overlay p-3 bg-main position-absolute d-flex flex-column align-items-start justify-content-between">
+                                                        <div class="content">
+                                                            <small class="fav d-inline-block bg-second border-main border-0 fs-4 position-absolute ">
+                                                                @include('frontend.layouts.partials.wishlist',['course' => $bundle->id, 'price' => $bundle->price])
+                                                            </small>
+                                                            <div class="badges">
+                                                                @if($bundle->trending == 1)
+                                                                    <span class="badge badge-light text-main">
+                                                                        <i class="fas fa-bolt"></i> 
+                                                                        @lang('labels.frontend.badges.trending')
+                                                                    </span>
+                                                                @endif
+                                                                @if($bundle->popular == 1)
+                                                                    <span class="badge badge-light text-main">
+                                                                        <i class="fas fa-bolt"></i> 
+                                                                        @lang('labels.frontend.badges.popular')
+                                                                    </span>
+                                                                @endif
+                                                                @if($bundle->featured == 1)
+                                                                    <span class="badge badge-light text-main">
+                                                                        <i class="fas fa-bolt"></i> 
+                                                                        @lang('labels.frontend.badges.featured')
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="course-title my-2">
+                                                                <h5 class="fw-bold text-white title">{{$bundle->title}}</h5>
+                                                            </div>
+                            
+                                                            <div class="course-desc my-2">
+                                                                <p class="fw-bold m-0">{!!$bundle->description!!}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <a href="{{ route('bundles.show', [$bundle->slug]) }}" class="btn btn-secondary">
+                                                                bundle Details 
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="image overflow-hidden" style="height: 200px; overflow:hidden">
+                                                        <img class="w-100" src="{{asset('storage/uploads/'.$bundle->course_image)}}" alt="" style="object-fit:cover;height: 200px;">
+                                                    </div>
+                                                    <div class="info p-3">
+                                                        <div class="badges">
+                                                            @if($bundle->trending == 1)
+                                                                <span class="badge badge-success">
+                                                                    <i class="fas fa-bolt"></i> 
+                                                                    @lang('labels.frontend.badges.trending')
+                                                                </span>
+                                                            @endif
+                                                            @if($bundle->popular == 1)
+                                                                <span class="badge badge-info">
+                                                                    <i class="fas fa-bolt"></i> 
+                                                                    @lang('labels.frontend.badges.popular')
+                                                                </span>
+                                                            @endif
+                                                            @if($bundle->featured == 1)
+                                                                <span class="badge badge-primary">
+                                                                    <i class="fas fa-bolt"></i> 
+                                                                    @lang('labels.frontend.badges.featured')
+                                                                </span>
+                                                            @endif
+                                                        </div>
+                                                        <div class="course-title my-2">
+                                                            <h5 class="fw-bold text-black">{{ \Illuminate\Support\Str::limit($bundle->title , 30) }}</h5>
+                                                        </div>
+                        
+                                                        <div class="price mb-3">
+                                                            <h6 class="m-0 text-main">
+                                                                {!!  $bundle->strikePrice  !!}
+                                                                {{$appCurrency['symbol'].' '.$bundle->price}}
+                                                            </h6>
+                                                        </div>
+                                                        <div class="icons d-flex align-items-center justify-content-start">
+                                                            <small class="d-inline-block mx-1 alert alert-warning p-1">
+                                                                {{$bundle->rating == null ?'0':$bundle->rating }}
+                                                                <i class="fas fa-star mx-1" style="color: goldenrod"></i>
+                                                            </small>
+                                                            <small class="d-inline-block mx-1 alert alert-success p-1">
+                                                                <i class="fas fa-user"></i> {{ $bundle->students()->count() }}
+                                                            </small>
+                                                            <small class="d-inline-block mx-1 alert alert-info p-1">
+                                                                <i class="fas fa-comment-dots"></i> {{count($bundle->reviews) }}
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                {{-- <div class="col-md-4">
                                                     <div class="best-course-pic-text relative-position">
                                                         <div class="best-course-pic relative-position"
                                                              @if($bundle->course_image != "")style="background-image: url('{{asset('storage/uploads/'.$bundle->course_image)}}')" @endif>
@@ -146,7 +236,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             @endforeach
                                         @else
                                             <div class="col-12">
@@ -253,7 +343,7 @@
                                         <input type="text" class="" value="{{(request('q') ? request('q') : old('q'))}}"
                                                name="q" placeholder="{{trans('labels.frontend.course.looking_for')}}">
                                     </div>
-                                    <button class="genius-btn gradient-bg text-center text-uppercase btn-block text-white font-weight-bold"
+                                    <button class="btn btn-primary w-100"
                                             type="submit">@lang('labels.frontend.course.find_courses') <i
                                                 class="fas fa-caret-right"></i></button>
                                 </form>
@@ -295,7 +385,7 @@
                         @endif
 
 
-                        @if($global_featured_course != "")
+                        {{-- @if($global_featured_course != "")
                             <div class="side-bar-widget">
                                 <h2 class="widget-title text-capitalize">@lang('labels.frontend.course.featured_course')</h2>
                                 <div class="featured-course">
@@ -332,7 +422,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endif
+                        @endif --}}
                     </div>
                 </div>
 

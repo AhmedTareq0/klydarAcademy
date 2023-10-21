@@ -1,10 +1,15 @@
 @if(count($section_data['section_content']) > 0)
-<div class="footer-menu ml-0 col-md-4">
+<div class="footer-menu ml-0 col-md col-sm-12">
     <h2 class="widget-title">{{ $section_data['section_title'] }}</h2>
     <ul class="list-inline">
-        @foreach($section_data['section_content'] as $item)
-            <li><a href="{{$item['link']}}"><i class="fas fa-caret-right"></i>{{$item['label']}}</a></li>
-        @endforeach
+        @for ($i = 0; $i < 4; $i++)
+            @if (isset($section_data['section_content'][$i]))
+                @php
+                    $item = $section_data['section_content'][$i];
+                @endphp
+                <li><a href="{{ $item['link'] }}"><i class="fas fa-caret-right"></i><span class="mx-2">{{ \Illuminate\Support\Str::limit($item['label'],40) }}</span></a></li>
+            @endif
+        @endfor
     </ul>
 </div>
 @endif

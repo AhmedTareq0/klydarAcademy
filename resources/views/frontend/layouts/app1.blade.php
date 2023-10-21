@@ -86,7 +86,7 @@
                 <div class="main-menu">
                     <div class="container  d-flex justify-content-between align-items-center">
                         <div class="navbar-default d-flex align-items-center">
-                            <div class="navbar-header float-left">
+                            <div class="navbar-header">
                                 <a class="navbar-brand text-uppercase p-0" href="{{url('/')}}">
                                     {{--<img src="{{asset("storage/logos/".config('logo_w_image'))}}" alt="logo">--}}
                                     <img src="{{asset("storage/logos/".config('logo_w_image'))}}" alt="logo">

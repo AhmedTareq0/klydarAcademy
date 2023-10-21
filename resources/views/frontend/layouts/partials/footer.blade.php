@@ -28,7 +28,6 @@
                                 @php
                                     $section_data = section_filter($footer_data->section1)
                                 @endphp
-
                                 @include('frontend.layouts.partials.footer_section',['section_data' => $section_data])
                             @endif
 
@@ -47,48 +46,39 @@
 
                                 @include('frontend.layouts.partials.footer_section',['section_data' => $section_data])
                             @endif
+                            @if($footer_data->newsletter_form->status == 1 || $footer_data->social_links->status == 1)
+                                <div class="col-md col-sm-12">
+                                    <h2 class="widget-title">@lang('labels.frontend.layouts.partials.contact_us')</h2>
+                                    <div class="subscribe-form ml-0 ">
+                                        <div class="subs-form relative-position">
+                                            <form action="{{route("subscribe")}}" method="post" class="position-relative">
+                                                @csrf
+                                                <input id="sub-input" class="email border-main form-control border-0" required name="subs_email" type="email" placeholder="@lang('labels.frontend.layouts.partials.email_address').">
+                                                <button class="position-absolute btn btn-primary border-0" type="submit" value="Submit"><i class="fa fa-paper-plane"></i></button>
+                                                @if($errors->has('email'))
+                                                    <p class="text-danger text-left">{{$errors->first('email')}}</p>
+                                                @endif
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    @if(($footer_data->social_links->status == 1) && (count($footer_data->social_links->links) > 0))
+                                    <div class="col-md-4 my-3">
+                                        <div class="social">
+                                            <div class="d-flex align-items-center justify-content-start">
+                                                @foreach($footer_data->social_links->links as $item)
+                                                    <a href="{{$item->link}}" class="">
+                                                        <i class="{{$item->icon}} text-white icon bg-main border-main border-0 d-flex align-items-center justify-content-center"></i>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                                </div>
+                            @endif
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- /footer-widget-content -->
-            <div class="footer-social-subscribe mb65">
-                <div class="row">
-                    @if(($footer_data->social_links->status == 1) && (count($footer_data->social_links->links) > 0))
-                        <div class="col-md-4">
-                            <div class="footer-social ul-li ">
-                                <h2 class="widget-title">@lang('labels.frontend.layouts.partials.social_network')</h2>
-                                <ul>
-                                    @foreach($footer_data->social_links->links as $item)
-                                        <li><a href="{{$item->link}}"><i class="{{$item->icon}}"></i></a></li>
-                                    @endforeach
-
-                                </ul>
-                            </div>
-                        </div>
-                    @endif
-
-                    @if($footer_data->newsletter_form->status == 1)
-                        <div class="col-md-8">
-                            <div class="subscribe-form ml-0 ">
-                                <h2 class="widget-title">@lang('labels.frontend.layouts.partials.subscribe_newsletter')</h2>
-
-                                <div class="subs-form relative-position">
-                                    <form action="{{route("subscribe")}}" method="post">
-                                        @csrf
-                                        <input class="email" required name="subs_email" type="email" placeholder="@lang('labels.frontend.layouts.partials.email_address').">
-                                        <div class="nws-button text-center  gradient-bg text-uppercase">
-                                            <button type="submit" value="Submit">@lang('labels.frontend.layouts.partials.subscribe_now')</button>
-                                        </div>
-                                        @if($errors->has('email'))
-                                            <p class="text-danger text-left">{{$errors->first('email')}}</p>
-                                        @endif
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    @endif
                 </div>
             </div>
 

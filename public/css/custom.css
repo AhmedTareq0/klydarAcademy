@@ -6,67 +6,67 @@
 .category-icon-title:after,
 .gradient-bdr,
 .address-icon {
-  background: #2f14be !important;
+  background: #00A8FF !important;
   background-size: 200% auto;
 }
 
 .section-title .subtitle:before,
 .section-title .subtitle:after {
-  color: #2f14be !important;
-  text-shadow: 15px 0 #2f14be !important;
+  color: #00A8FF !important;
+  text-shadow: 15px 0 #00A8FF !important;
 }
 
 .breadcrumb-section .breadcrumb-item {
-  background-color: #2f14be !important;
+  background-color: #00A8FF !important;
 }
 
 .nav-menu li a:after {
-  background: #fb17ce !important;
+  background: #FF00D2 !important;
   background-size: 200% auto;
 }
 
 .cart-search li {
-  border: 2px solid #2f14be !important;
+  border: 2px solid #00A8FF !important;
 }
 
 .sub-menu:before {
-  border-top: 10px solid #2f14be !important;
+  border-top: 10px solid #00A8FF !important;
 }
 
 .search-body .search-form .search-close {
-  background-color: #2f14be !important;
+  background-color: #00A8FF !important;
 }
 
 .sub-menu li a:hover {
-  color: #2f14be !important;
+  color: #00A8FF !important;
 }
 
 .header-style-2 .sub-menu li a:hover {
-  color: #2f14be !important;
+  color: #00A8FF !important;
 }
 
 #slider-item .genius-btn {
-  border: 2px solid #2f14be !important;
+  border: 2px solid #00A8FF !important;
 }
 
 #slider-item .slider-course-category li:hover {
-  color: #2f14be !important;
+  color: #00A8FF !important;
 }
 
 .coming-countdown li {
-  border: 2px solid #2f14be !important;
+  border: 2px solid #00A8FF !important;
 }
 
 .home-secound-course-search .about-list li {
-  color: #2f14be !important;
+  color: #00A8FF !important;
 }
 
 .search-course-secound .counter-number p {
-  color: #2f14be !important;
+  color: #00A8FF !important;
 }
 
 .search-course-third .counter-icon-number:after {
-  background-color: #2f14be !important;
+  background-color: #00A8FF !important;
 }
 
 .select-lang select,
@@ -102,7 +102,7 @@
 .terms-text b,
 .purchase-list .in-total span,
 .footer-menu li i {
-  color: #2f14be;
+  color: #00A8FF;
 }
 
 .about-us-text .section-title:after,
@@ -119,7 +119,7 @@ ul.product-tab li:after,
 .course-page-section .course-type-list span,
 .avrg-rating .rating-overview:hover .start-bar,
 .section-title-2 h2:after {
-  background-color: #2f14be !important;
+  background-color: #00A8FF !important;
 }
 
 .cart-search li,
@@ -128,11 +128,11 @@ ul.product-tab li:after,
 .secound-teacher-section .teacher-img-text .teacher-social-list li,
 .footer-social li,
 .subscribe-form li {
-  border: 2px solid #2f14be !important;
+  border: 2px solid #00A8FF !important;
 }
 
 .text-gradiant {
-  -webkit-text-fill-color: #2f14be;
+  -webkit-text-fill-color: #00A8FF;
 }
 
 .section-title .subtitle {
@@ -143,53 +143,53 @@ ul.product-tab li:after,
 }
 
 .course-title:after {
-  background-color: #2f14be;
+  background-color: #00A8FF;
 }
 
 .service-text p {
-  color: #fb17ce;
+  color: #FF00D2;
 }
 
 .owl-dots .owl-dot {
-  background-color: #fb17ce;
+  background-color: #FF00D2;
 }
 
 .owl-nav .owl-prev,
 .owl-nav .owl-next {
-  background-color: #fb17ce;
+  background-color: #FF00D2;
 }
 
 .service-icon .text-gradiant {
-  -webkit-text-fill-color: #fb17ce;
+  -webkit-text-fill-color: #FF00D2;
 }
 
 #why-choose-us .subtitle::after, #why-choose-us .subtitle::before {
-  color: #fb17ce !important;
-  text-shadow: 15px 0 #fb17ce !important;
+  color: #FF00D2 !important;
+  text-shadow: 15px 0 #FF00D2 !important;
 }
 
 .student-qoute {
-  border-color: #fb17ce !important;
+  border-color: #FF00D2 !important;
 }
 .student-qoute::after {
-  background-color: #fb17ce !important;
-  color: #2f14be !important;
+  background-color: #FF00D2 !important;
+  color: #00A8FF !important;
 }
 
 .student-name-designation * {
-  color: #fb17ce !important;
+  color: #FF00D2 !important;
   font-size: 16px !important;
 }
 .student-name-designation .st-name::after {
-  background-color: #fb17ce !important;
+  background-color: #FF00D2 !important;
 }
 
 .widget-title::after {
-  background-color: #2f14be;
+  background-color: #00A8FF;
 }
 
 .contact-address-details {
-  border-color: #fb17ce;
+  border-color: #FF00D2;
 }
 .contact-address-details .address-icon {
   -o-border-image: none !important;
@@ -197,7 +197,7 @@ ul.product-tab li:after,
 }
 
 #course-teacher .teacher-img-content {
-  background-color: #2f14be;
+  background-color: #00A8FF;
   box-shadow: 0 0 5px 0 #555;
 }
 #course-teacher .teacher-img-content .teacher-cntent {
@@ -226,18 +226,18 @@ ul.product-tab li:after,
   align-items: center;
 }
 #course-teacher .teacher-img-content .teacher-social-name ul li {
-  background-color: #fb17ce;
+  background-color: #FF00D2;
   color: #fff;
   margin-inline-end: 10px;
 }
 #course-teacher .teacher-img-content .teacher-social-name ul li:hover {
-  color: #2f14be;
+  color: #00A8FF;
 }
 #course-teacher .teacher-img-content .teacher-social-name span {
   color: #fff !important;
 }
 #course-teacher .genius-btn {
-  background-color: #fb17ce !important;
+  background-color: #FF00D2 !important;
 }
 #course-teacher .genius-btn a,
 #course-teacher .genius-btn i {

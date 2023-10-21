@@ -8,7 +8,46 @@
                 @foreach($popular_courses->take(4) as $item)
                 {{-- @dd($item) --}}
                     <div class="col-md-3 col-sm-6 course-item">
-                        <div  href="{{ route('courses.show', [$item->slug]) }}" class="d-block course-details border-main mt-3 border-0">
+                        <div  href="{{ route('courses.show', [$item->slug]) }}" class="d-block course-details border-main mt-3 border-0 position-relative">
+                            <div class="course-overlay p-3 bg-main position-absolute d-flex flex-column align-items-start justify-content-between">
+                                <div class="content">
+                                    <small class="fav d-inline-block bg-second border-main border-0 fs-4 position-absolute ">
+                                        @include('frontend.layouts.partials.wishlist',['course' => $item->id, 'price' => $item->price])
+                                    </small>
+                                    <div class="badges">
+                                        @if($item->trending == 1)
+                                            <span class="badge badge-light text-main">
+                                                <i class="fas fa-bolt"></i> 
+                                                @lang('labels.frontend.badges.trending')
+                                            </span>
+                                        @endif
+                                        @if($item->popular == 1)
+                                            <span class="badge badge-light text-main">
+                                                <i class="fas fa-bolt"></i> 
+                                                @lang('labels.frontend.badges.popular')
+                                            </span>
+                                        @endif
+                                        @if($item->featured == 1)
+                                            <span class="badge badge-light text-main">
+                                                <i class="fas fa-bolt"></i> 
+                                                @lang('labels.frontend.badges.featured')
+                                            </span>
+                                        @endif
+                                    </div>
+                                    <div class="course-title my-2">
+                                        <h5 class="fw-bold text-white title">{{$item->title}}</h5>
+                                    </div>
+    
+                                    <div class="course-desc my-2">
+                                        <p class="fw-bold m-0">{!!$item->description!!}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a href="{{ route('courses.show', [$item->slug]) }}" class="btn btn-secondary">
+                                        enroll Course 
+                                    </a>
+                                </div>
+                            </div>
                             <div class="image overflow-hidden" style="height: 200px; overflow:hidden">
                                 <img class="w-100" src="{{asset('storage/uploads/'.$item->course_image)}}" alt="" style="object-fit:cover;height: 200px;">
                             </div>
@@ -53,9 +92,6 @@
                                     </small>
                                     <small class="d-inline-block mx-1 alert alert-info p-1">
                                         <i class="fas fa-comment-dots"></i> {{count($item->reviews) }}
-                                    </small>
-                                    <small class="d-block mx-1 alert alert-primary p-1">
-                                        @include('frontend.layouts.partials.wishlist',['course' => $item->id, 'price' => $item->price])
                                     </small>
                                 </div>
                             </div>
