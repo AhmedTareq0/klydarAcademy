@@ -6,7 +6,7 @@
 
 @if($footer_data != "")
 <footer>
-    <section id="footer-area" class="footer-area-section">
+    <section id="footer-area" class="footer-area-section text-left">
         <div class="container">
             <div class="footer-content pb10">
                 <div class="row">
@@ -16,7 +16,7 @@
                                 <img src="{{asset("storage/logos/".config('logo_b_image'))}}" alt="logo">
                             </div>
                             @if($footer_data->short_description->status == 1)
-                                <div class="footer-about-text">
+                                <div class="footer-about-text text-light">
                                     <p>{!! $footer_data->short_description->text !!} </p>
                                 </div>
                             @endif
@@ -63,11 +63,11 @@
                                         </div>
                                     </div>
                                     @if(($footer_data->social_links->status == 1) && (count($footer_data->social_links->links) > 0))
-                                    <div class="col-md-4 my-3">
+                                    <div class=" my-3">
                                         <div class="social">
                                             <div class="d-flex align-items-center justify-content-start">
                                                 @foreach($footer_data->social_links->links as $item)
-                                                    <a href="{{$item->link}}" class="">
+                                                    <a href="{{$item->link}}" class="text-left">
                                                         <i class="{{$item->icon}} text-white icon bg-main border-main border-0 d-flex align-items-center justify-content-center"></i>
                                                     </a>
                                                 @endforeach
@@ -88,21 +88,24 @@
                     @if($footer_data->copyright_text->status == 1)
                     <div class="col-md-6">
                         <div class="copy-right-text">
-                            <p>Powered By <a href="https://www.neonlms.com/" target="_blank" class="mr-4"> NeonLMS</a>  {!!  $footer_data->copyright_text->text !!}</p>
+                            <p class="text-light">Powered By 
+                                <a class="text-main" href="https://www.taskedin.net/" target="_blank" class="mr-4"> Taskedin</a>  
+                                {!!  $footer_data->copyright_text->text !!}
+                            </p>
                         </div>
                     </div>
                     @endif
                     @if(($footer_data->bottom_footer_links->status == 1) && (count($footer_data->bottom_footer_links->links) > 0))
                     <div class="col-md-6">
-                        <div class="copy-right-menu-item float-right ul-li">
+                        <div class="copy-right-menu-item ul-li text-right">
                             <ul>
                                 @foreach($footer_data->bottom_footer_links->links as $item)
-                                <li><a href="{{$item->link}}">{{$item->label}}</a></li>
+                                <li><a class="text-main" href="{{$item->link}}">{{$item->label}}</a></li>
                                 @endforeach
                                 @if(config('show_offers'))
-                                    <li><a href="{{route('frontend.offers')}}">@lang('labels.frontend.layouts.partials.offers')</a> </li>
+                                    <li><a class="text-main" href="{{route('frontend.offers')}}">@lang('labels.frontend.layouts.partials.offers')</a> </li>
                                 @endif
-                                <li><a href="{{route('frontend.certificates.getVerificationForm')}}">@lang('labels.frontend.layouts.partials.certificate_verification')</a></li>
+                                <li><a class="text-main" href="{{route('frontend.certificates.getVerificationForm')}}">@lang('labels.frontend.layouts.partials.certificate_verification')</a></li>
                             </ul>
                         </div>
                     </div>

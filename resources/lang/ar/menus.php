@@ -172,7 +172,7 @@ return array (
       ),
       'bundles' => 
       array (
-        'title' => 'بال',
+        'title' => 'الحزم',
       ),
       'reports' => 
       array (

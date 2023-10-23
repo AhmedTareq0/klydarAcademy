@@ -191,7 +191,7 @@
                             <div class="section-title-2 mb65 headline text-left ">
                                 <h2>@lang('labels.frontend.layouts.partials.students_testimonial')</h2>
                             </div>
-                            <p>voices of our students are a testament to the quality of education and experiences we provide. Here's what some of our students have to say about their time with us</p>
+                            <p class="text-left">voices of our students are a testament to the quality of education and experiences we provide. Here's what some of our students have to say about their time with us</p>
                         </div>
                         <div class="col-md-7">
                             <div class="testimonial-slide">
@@ -203,10 +203,10 @@
                                                     <div style="margin: -12px -10px; text-align:end">
                                                         <i class="fa fa-quote-right text-main"></i>
                                                     </div>
-                                                    <p class="m-0">
+                                                    <p class="m-0 text-left">
                                                         {{\Illuminate\Support\Str::limit($item->content , 65) }}
                                                     </p>
-                                                    <div class="rate my-3">
+                                                    <div class="rate my-3 text-left">
                                                         <i class="fa fa-star" style="color: goldenrod"></i>
                                                         <i class="fa fa-star mx-1" style="color: goldenrod"></i>
                                                         <i class="fa fa-star mx-1" style="color: goldenrod"></i>
@@ -214,8 +214,8 @@
                                                         <i class="fa fa-star" style="color: goldenrod"></i>
                                                     </div>
                                                     <div class="mb-2">
-                                                        <h4 class="name mb-0 text-black">{{$item->name}} </h4>
-                                                        <p class="position mb-0">{{$item->occupation}}</p>
+                                                        <h4 class="text-left name mb-0 text-black">{{$item->name}} </h4>
+                                                        <p class="text-left position mb-0">{{$item->occupation}}</p>
                                                     </div>
                                                     <div style="margin: -12px -10px; text-align:start">
                                                         <i class="fa fa-quote-left text-second"></i>
@@ -275,21 +275,19 @@
     @if($sections->teachers->status == 1)
         <!-- Start of course teacher ============================================= -->
         @if(count($teachers)> 0)
-
         <section id="course-teacher" class="course-teacher-section">
             <div class="container">
                 <div class="section-title mb20 headline text-center ">
                     <span class="subtitle text-uppercase">@lang('labels.frontend.home.our_professionals')</span>
                     <h2>{{env('APP_NAME')}} <span>@lang('labels.frontend.home.teachers').</span></h2>
                 </div>
-
                 <div class="teachers">
                     <div class="row justify-content-center">
                         @foreach($teachers->take(4) as $item)
-                            <div class="col-md-3">
+                            <div class="col-md-3 px-4">
                                 <div class="teacher bg-white border-main border-0">
-                                    <div class="image mx-4 p-2">
-                                        <img src="{{$item->picture}}" alt="" class="w-100 rounded border-0" style="margin-top: -100px">
+                                    <div class="image p-2 ">
+                                        <img src="{{$item->picture}}" alt="" class="w-100 rounded-circle shadow-2" style="margin-top: -80px">
                                     </div>
                                     <div class="info p-3 pt-0 text-center">
                                         <p class="m-0 name">{{$item->full_name}}</p>
@@ -305,7 +303,6 @@
         <!-- End of course teacher ============================================= -->
         @endif
     @endif
-
 
     @if($sections->faq->status == 1)
         <!-- Start FAQ section

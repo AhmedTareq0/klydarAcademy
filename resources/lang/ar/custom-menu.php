@@ -5,7 +5,7 @@ return array (
   array (
     'about-us' => 'معلومات عنا',
     'blog' => 'مدونة',
-    'bundles' => 'بال',
+    'bundles' => 'الحزم',
     'contact' => 'اتصل',
     'courses' => 'الدورات',
     'forums' => 'المنتديات',

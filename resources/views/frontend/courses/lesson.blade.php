@@ -136,7 +136,9 @@
             <div class="page-breadcrumb-content text-center">
                 <div class="page-breadcrumb-title">
                     <h2 class="breadcrumb-head black bold">
-                        <span>{{$lesson->course->title}}</span><br> {{$lesson->title}} </h2>
+                        <span>{{$lesson->course->title}}</span>
+                        {{-- <p>{{$lesson->title}}</p> --}}
+                    </h2>
                 </div>
             </div>
         </div>

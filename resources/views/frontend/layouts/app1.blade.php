@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-@langrtl
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="rtl">
-@else
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    @endlangrtl
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{app()->getLocale() == 'ar' ? 'rtl' : ''}}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -75,7 +71,6 @@
     <body class="{{config('layout_type')}}">
 
     <div id="app">
-    {{--<div id="preloader"></div>--}}
     @include('frontend.layouts.modals.loginModal')
 
 

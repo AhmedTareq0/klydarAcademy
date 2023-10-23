@@ -11,7 +11,7 @@
                         <div  href="{{ route('courses.show', [$item->slug]) }}" class="d-block course-details border-main mt-3 border-0 position-relative">
                             <div class="course-overlay p-3 bg-main position-absolute d-flex flex-column align-items-start justify-content-between">
                                 <div class="content">
-                                    <small class="fav d-inline-block bg-second border-main border-0 fs-4 position-absolute ">
+                                    <small class="fav d-inline-block bg-second border-main border-0 fs-4 ">
                                         @include('frontend.layouts.partials.wishlist',['course' => $item->id, 'price' => $item->price])
                                     </small>
                                     <div class="badges">

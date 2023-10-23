@@ -33,7 +33,7 @@
         @endif
 
 
-        @if($global_featured_course != "")
+        {{-- @if($global_featured_course != "")
             <div class="side-bar-widget">
                 <h2 class="widget-title text-capitalize">@lang('labels.frontend.layouts.partials.featured_course')</h2>
                 <div class="featured-course">
@@ -59,6 +59,6 @@
                     </div>
                 </div>
             </div>
-        @endif
+        @endif --}}
     </div>
 </div>

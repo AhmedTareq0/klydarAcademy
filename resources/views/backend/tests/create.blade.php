@@ -53,7 +53,7 @@
             <div class="row">
                 <div class="col-4 form-group">
                     {!! Form::label('passing_score',trans('labels.backend.tests.fields.score_field'), ['class' => 'control-label']) !!}
-                    {!! Form::text('passing_score', old('passing_score'), ['class' => 'form-control', 'placeholder' => trans('labels.backend.tests.fields.score_field_placeholder')]) !!}
+                    {!! Form::text('passing_score', old('passing_score'), ['class' => 'form-control', 'placeholder' => trans('labels.backend.tests.fields.score_field')]) !!}
                 </div>
                 <div class="col-4 form-group">
                     {!! Form::hidden('published', 0) !!}

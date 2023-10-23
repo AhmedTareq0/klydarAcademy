@@ -63,6 +63,8 @@ return array (
         'description' => 'Description',
         'published' => 'Published',
         'questions' => 'Questions',
+        'score_field' => 'Score',
+        
       ),
       'create' => 'Create Test',
       'edit' => 'Edit Test',
@@ -1454,6 +1456,8 @@ return array (
     ),
     'course' => 
     array (
+      'your_score' => 'Your Score',
+      'your_result' => 'Your Result',
       'ratings' => 'Ratings',
       'stars' => 'Stars',
       'by' => 'By',

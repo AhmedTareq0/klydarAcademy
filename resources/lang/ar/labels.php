@@ -939,14 +939,14 @@ return array (
       'slug_placeholder' => 'سبيكة الإدخال أو سيتم إنشاؤه تلقائيا',
       'test' => 'اختبار',
       'timeline_description' => 'سحب وتغيير تسلسل الدروس / الاختبارات بالطبع',
-      'title' => 'بال',
+      'title' => 'الحزم',
       'view' => 'عرض الحزم',
       'add_courses' => 'إضافة الدورات',
       'select_courses' => 'اختر الدورات',
     ),
     'reports' => 
     array (
-      'bundles' => 'بال',
+      'bundles' => 'الحزم',
       'courses' => 'الدورات',
       'fields' => 
       array (
@@ -970,7 +970,7 @@ return array (
     'coupons' => 
     array (
       'amount_note' => 'إذا تم تحديد <b> معدل الخصم </b> ، فنسبة معدل الإدخال. إذا تم تحديد <b> معدل ثابت </b> ، فقم بإدخال مبلغ معين ليتم خصمه.',
-      'bundles' => 'بال',
+      'bundles' => 'الحزم',
       'courses' => 'الدورات',
       'create' => 'إنشاء القسيمة',
       'description' => 'وصف',
@@ -1283,7 +1283,7 @@ return array (
       'course' => 'دورة',
       'bundle_detail' => 'حزمة التفاصيل',
       'bundle_reviews' => 'الحزمة <span> من المراجعات: </span>',
-      'bundles' => 'بال',
+      'bundles' => 'الحزم',
       'available_in_bundles' => 'متاح أيضا في حزم',
       'complete_test' => 'يرجى إكمال الاختبار',
       'looking_for' => 'البحث عن؟',
